@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Bulka Capital: навигация</title>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700&family=Sofia+Sans+Extra+Condensed:wght@700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F4F1EA;--card:#fff;--ink:#262A33;--mute:#6B6F78;--line:#E3DED3;--acc:#0D7680;--gold:#C9A24B;--navy:#101D3F}
+html.dark{--bg:#0B1730;--card:#101D3F;--ink:#EEF0F5;--mute:#A9B7D1;--line:#22305A;--acc:#7FD7A0;--gold:#E6CD8D}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font:400 15px/1.4 "Golos Text",system-ui,sans-serif;padding:0 16px 32px;-webkit-tap-highlight-color:transparent}
+header{padding:18px 0 10px}
+.kick{color:var(--acc);font-weight:700;font-size:13px}
+h1{font:800 34px/1 "Sofia Sans Extra Condensed",sans-serif;text-transform:uppercase;letter-spacing:.3px;margin-top:4px}
+.sub{color:var(--mute);font-size:14px;margin-top:6px}
+.search{position:sticky;top:0;z-index:3;background:var(--bg);padding:10px 0 8px}
+.search input{width:100%;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:10px;padding:11px 12px;font:inherit;outline:none}
+.search input:focus{border-color:var(--acc)}
+.chips{display:flex;flex-wrap:wrap;gap:6px;padding:2px 0 4px}
+.chip{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:6px 11px;font:500 13px "Golos Text";cursor:pointer}
+.chip.on{background:var(--acc);border-color:var(--acc);color:#fff}
+html.dark .chip.on{color:#0B1730}
+h2{font:800 22px/1.1 "Sofia Sans Extra Condensed",sans-serif;text-transform:uppercase;margin:22px 0 8px;display:flex;align-items:baseline;gap:8px}
+h2 small{font:500 12px "Golos Text";color:var(--mute);text-transform:none}
+.list{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.row{display:flex;align-items:center;gap:10px;padding:12px 14px;border-top:1px solid var(--line);cursor:pointer;color:inherit;text-decoration:none}
+.row:first-child{border-top:0}
+.row:active{background:color-mix(in srgb,var(--acc) 10%,transparent)}
+.row .t{flex:1;min-width:0}
+.row .n{font-size:12px;color:var(--mute);margin-top:2px}
+.badge{flex:none;font-size:11px;font-weight:600;color:var(--mute);border:1px solid var(--line);border-radius:6px;padding:2px 6px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.tile{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;cursor:pointer;min-height:74px;display:flex;flex-direction:column;justify-content:space-between}
+.tile b{font-weight:600;font-size:14px;line-height:1.25}
+.tile span{font-size:12px;color:var(--mute);margin-top:6px}
+.cta{display:block;text-align:center;background:var(--acc);color:#fff;border-radius:10px;padding:13px;font-weight:600;margin-top:8px;cursor:pointer}
+html.dark .cta{color:#0B1730}
+.cta.ghost{background:transparent;color:var(--ink);border:1px solid var(--ink)}
+.lock{background:var(--card);border:1px dashed var(--line);border-radius:12px;padding:14px}
+.lock p{color:var(--mute);font-size:14px}
+.lock .cta{margin-top:10px}
+.empty{color:var(--mute);padding:20px 0;text-align:center}
+.hide{display:none!important}
+footer{color:var(--mute);font-size:12px;margin-top:26px;text-align:center}
+</style>
+</head>
+<body>
+<header>
+  <div class="kick">Bulka Capital · Юлия Музова</div>
+  <h1>Навигация по каналу</h1>
+  <p class="sub">Главное за пять лет: посты, инструменты сайта и гайды</p>
+</header>
+<div class="search">
+  <input id="q" type="search" placeholder="Поиск: пенсия, облигации, налог…" autocomplete="off">
+</div>
+<div class="chips" id="chips"></div>
+<main id="main"></main>
+<footer>Нажмите на пост, и он откроется в канале</footer>
+
+<script>
+const CAT = {"channel": "BulkaCapital", "site": "https://bulkacapital.ru", "hashtags": ["#начать", "#капитал", "#облигации", "#разбор", "#налоги", "#детиденьги", "#обзорнедели"], "sections": [{"id": "start", "emoji": "🔹", "title": "С чего начать", "tag": "#начать", "items": [{"post": 10974, "title": "Чек-лист: как начать инвестировать правильно"}, {"post": 10298, "title": "С какой суммы начинать", "note": "2024, примеры цен лотов устарели"}, {"post": 10305, "title": "Подушка безопасности: сколько и где хранить"}, {"post": 10971, "title": "7 ошибок новичков, которые стоят денег"}, {"post": 10964, "title": "Если бы я начинала инвестировать сейчас"}, {"post": 10975, "title": "Портфель на 10 000 ₽"}, {"post": 10983, "title": "Куда пристроить 5–10 тысяч"}, {"post": 10982, "title": "Почему не стоит держать деньги на карте"}, {"post": 10986, "title": "«Уже потерял деньги и теперь боюсь»"}, {"post": 10988, "title": "«Рубль нестабилен, копить нет смысла»"}]}, {"id": "capital", "emoji": "💰", "title": "Капитал и пассивный доход", "tag": "#капитал", "items": [{"post": 10992, "title": "Сколько нужно, чтобы жить на проценты"}, {"post": 10993, "title": "За сколько лет накопить миллион"}, {"post": 11008, "title": "Сколько вложить ради 30, 50, 100 и 300 тысяч в месяц"}, {"post": 11025, "title": "Сколько нужно акций ради миллиона дивидендов в год"}, {"post": 11010, "title": "Пенсия в 35: план или красивая картинка"}, {"post": 10293, "title": "Как посчитать свою будущую пенсию", "note": "2024, стоимость балла старая"}, {"post": 11009, "title": "Потолок пенсионных баллов"}, {"post": 11030, "title": "Правило 4% и ещё два дорогих мифа"}, {"post": 11039, "title": "5 «золотых правил» на сегодняшних цифрах"}]}, {"id": "bonds", "emoji": "🏦", "title": "Облигации и вклады", "tag": "#облигации", "items": [{"post": 11003, "title": "Акции или облигации: сколько куда"}, {"post": 11024, "title": "Риски ВДО и дефолты эмитентов"}, {"post": 11027, "title": "«Самолёт»: проверять эмитента до покупки"}, {"post": 10602, "title": "Вклады или дивидендные акции за 10 лет"}, {"post": 10324, "title": "Могут ли забрать вклады (видео)"}, {"post": 11029, "title": "Турция: как «почти вклад» оказался не вкладом"}]}, {"id": "razbor", "emoji": "📊", "title": "Разборы компаний", "tag": "#разбор", "items": [{"post": 11038, "title": "Лукойл: убыток в приложении и дивиденд 535 ₽"}, {"post": 11026, "title": "ПИК уходит с биржи: что делать акционеру"}, {"post": 10999, "title": "Ozon после атаки на склады"}, {"post": 10978, "title": "Секреты инвестиций Уоррена Баффета"}, {"url": "/razbory", "title": "Все разборы на сайте"}]}, {"id": "tax", "emoji": "🧾", "title": "Налоги и законы", "tag": "#налоги", "items": [{"post": 11032, "title": "Налог с процентов по вкладам: заплатить до 1 декабря"}, {"post": 11017, "title": "Налог на инвестиции до 22%: что сделать до конца года"}, {"post": 10294, "title": "Вычеты за квартиру и проценты по ипотеке"}, {"post": 9645, "title": "ПДС: программа долгосрочных сбережений"}, {"post": 11040, "title": "ПДН: долговая нагрузка на пальцах"}, {"post": 10997, "title": "Крипта с 1 сентября: что можно"}, {"post": 11005, "title": "Цифровой рубль: нужен ли он вам"}]}, {"id": "kids", "emoji": "👶", "title": "Дети и деньги", "tag": "#детиденьги", "items": [{"post": 11037, "title": "Капитал ребёнку к 18 годам"}, {"post": 11023, "title": "С какого возраста говорить с детьми о деньгах"}]}], "buttons": [[{"text": "📅 Обзоры недели", "url": "/obzory-rynka"}, {"text": "🧰 Инструменты", "url": "/calculators"}], [{"text": "🎁 Гайды", "url": "/guides", "todo": "уточнить: страница сайта или мини-апп"}, {"text": "🎓 Курс «Финансовый прорыв»", "url": "/proryv"}], [{"text": "📈 Модельные портфели", "url": "/podpiska"}]], "soul": [{"url": "https://telegra.ph/Top-filmov-pro-investicii-trejderov-s-Uoll-Strit-i-globalnyj-finansovyj-krizis-01-24", "title": "Фильмы про инвестиции и Уолл-стрит"}, {"url": "https://telegra.ph/Novyj-finansovyj-krizis-Sravnivaem-krizis-2008g-i-tekushchuyu-situaciyu-03-12", "title": "Кризис 2008 года и SVB (2023, исторический разбор)"}, {"post": 10322, "title": "Рэй Далио: принципы успеха (видео)"}, {"post": 10282, "title": "ПДС: видеоразбор"}, {"url": "/knigi-pro-investicii", "title": "Книги про инвестиции и одна для детей"}], "guides": [{"title": "План выхода из долгов", "note": "Закрыть долги и начать копить", "url": "/b/107525/5922"}, {"title": "ИИС-3", "note": "Как открыть и получить вычет", "url": "/b/107108/5922"}, {"title": "Расчёт пассивного дохода", "note": "Сколько нужно капитала под вашу цель", "url": "/b/106950/5922"}, {"title": "Стратегия 2026", "note": "", "url": "/b/104421/5922"}, {"title": "Дети и деньги", "note": "", "url": "/b/106951/5922"}, {"title": "Чек-лист начинающего инвестора", "note": "", "url": "/b/102800/5922"}, {"title": "Как не стать заложником пузыря", "note": "Чек-лист", "url": "/b/102721/5922"}, {"title": "Инвестиции в акции и облигации", "note": "Инструкция", "url": "/b/25279/5922"}, {"title": "5 инвестиционных стратегий", "note": "Для начинающего инвестора", "url": "/b/15214/5922"}, {"title": "Как получить накопительную часть пенсии", "note": "", "url": "/b/15216/5922"}, {"title": "Как унаследовать накопительную часть пенсии", "note": "", "url": "/b/15215/5922"}, {"title": "Пособия", "note": "", "url": "/b/16865/5922"}, {"title": "Выплаты в Москве", "note": "", "url": "/b/24388/5922"}], "guides_hidden": [{"title": "Как открыть брокерский счёт в IB", "url": "/b/15217/5922", "why": "IB для россиян неактуален, Юлия решила не показывать (16.11)"}]};
+const TOOLS = [
+  ["Скринер облигаций","Доходность, рейтинг, купоны","/skriner-obligaciy"],
+  ["Лестница облигаций","Доход по месяцам","/lestnica-obligaciy"],
+  ["Календарь дивидендов","Отсечки и выплаты","/kalendar-dividendov"],
+  ["Календарь купонов","Купоны и оферты на 60 дней","/kalendar-kuponov"],
+  ["Скринер фондов","БПИФы Мосбиржи","/skriner-fondov"],
+  ["Индексы Мосбиржи","График и состав","/indeksy-mosbirzhi"],
+  ["Кривая ОФЗ","Доходности и история","/krivaya-ofz"],
+  ["Ключевая ставка","Решения ЦБ","/klyuchevaya-stavka"],
+  ["Курсы валют и золота","ЦБ и биржа","/kursy-valyut"],
+  ["Доходность активов","По годам с 2000-х","/dohodnost-aktivov"],
+  ["Фьючерсы","Скринер","/fyuchersy"],
+  ["Все калькуляторы","Цель, пенсия, сложный процент","/calculators"]
+];
+const GUIDES = CAT.guides.map(g => [g.title, g.note, g.url]);
+// Проверка подписки на канал: веб-приложение Google «Канал: проверка подписки» (apps-script/Code.gs)
+const CHECK_URL = "https://script.google.com/macros/s/AKfycbzmZY-GyZN1PFVfFrRsqC1S3Jyewfu8s6qBDNpUprVyYe_Jw29AvX6HD33hNR34PhDs/exec";
+const LOCKED = ["razbor", "tools", "week", "guides"];
+let member = null; // null — проверяем, true/false — ответ сервера
+const tg = window.Telegram && Telegram.WebApp;
+if (tg && tg.initData !== undefined) { tg.ready(); tg.expand(); }
+if ((tg && tg.colorScheme === "dark") || (!tg?.initData && matchMedia("(prefers-color-scheme: dark)").matches)) document.documentElement.classList.add("dark");
+
+const abs = u => u.startsWith("http") ? u : CAT.site + u;
+const link = it => it.post ? `https://t.me/${CAT.channel}/${it.post}` : abs(it.url);
+function go(u){
+  if (tg && tg.initData) { u.startsWith("https://t.me/") ? tg.openTelegramLink(u) : tg.openLink(u); }
+  else window.open(u, "_blank");
+}
+const esc = s => s.replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+const blocks = [
+  ...CAT.sections.map(s => ({id:s.id, title:s.title, tag:s.tag, kind:"list", items:s.items})),
+  {id:"tools", title:"Инструменты", kind:"grid", items:TOOLS.map(([t,n,u]) => ({title:t, note:n, url:u}))},
+  {id:"week", title:"Обзоры и разборы", kind:"list", items:[
+    {title:"Обзоры недели: архив", note:"Каждую пятницу", url:"/obzory-rynka"},
+    {title:"Разборы акций", note:"Полные разборы на сайте", url:"/razbory"},
+    {title:"Анализ акций", note:"Мультипликаторы и отчётность", url:"/analiz-akciy"}]},
+  {id:"guides", title:"Гайды", kind:"list", items:GUIDES.map(([t,n,u]) => ({title:t, note:n, url:u, badge:"PDF"}))},
+  {id:"soul", title:"Для души", kind:"list", items:CAT.soul},
+  {id:"buy", title:"Курс и подписка", kind:"cta"}
+];
+
+const chips = document.getElementById("chips"), main = document.getElementById("main");
+let active = "all";
+chips.innerHTML = [`<button class="chip on" data-id="all">Все</button>`, ...blocks.map(b => `<button class="chip" data-id="${b.id}">${esc(b.title)}</button>`)].join("");
+chips.onclick = e => { const c = e.target.closest(".chip"); if(!c) return; active = c.dataset.id;
+  chips.querySelectorAll(".chip").forEach(x => x.classList.toggle("on", x === c)); render(); scrollTo({top:0}); };
+document.getElementById("q").oninput = render;
+
+function render(){
+  const q = document.getElementById("q").value.trim().toLowerCase();
+  let html = "";
+  for (const b of blocks) {
+    if (active !== "all" && active !== b.id) continue;
+    if (b.kind === "cta") { if (q) continue;
+      html += `<h2>${b.title}</h2>
+        <a class="cta" data-u="${abs('/proryv')}">Курс «Финансовый прорыв»: система за неделю</a>
+        <a class="cta ghost" data-u="${abs('/podpiska')}">Модельные портфели по подписке</a>`; continue; }
+    const items = b.items.filter(it => !q || (it.title + " " + (it.note||"") + " " + b.title).toLowerCase().includes(q));
+    if (!items.length) continue;
+    const locked = LOCKED.includes(b.id) && member !== true;
+    html += `<h2>${esc(b.title)}${locked ? ` <small>🔒 для подписчиков канала</small>` : (b.tag ? ` <small>${b.tag}</small>` : "")}</h2>`;
+    if (locked) { html += lockCard(items.length); continue; }
+    if (b.kind === "grid") html += `<div class="grid">` + items.map(it => `<div class="tile" data-u="${link(it)}"><b>${esc(it.title)}</b><span>${esc(it.note||"")}</span></div>`).join("") + `</div>`;
+    else html += `<div class="list">` + items.map(it => `<a class="row" data-u="${link(it)}"><div class="t">${esc(it.title)}${it.note && !it.post ? `<div class="n">${esc(it.note)}</div>` : ""}</div><span class="badge">${it.badge || (it.post ? "пост" : "сайт")}</span></a>`).join("") + `</div>`;
+  }
+  main.innerHTML = html || `<p class="empty">Ничего не нашлось. Попробуйте другое слово</p>`;
+}
+function lockCard(n){
+  if (member === null) return `<div class="lock"><p>Проверяем подписку на канал…</p></div>`;
+  const inTg = tg && tg.initData;
+  return `<div class="lock"><p>${inTg ? "Этот раздел открыт подписчикам канала @BulkaCapital. Подпишитесь и нажмите «Проверить»." : "Откройте меню через кнопку в закрепе канала @BulkaCapital, там раздел откроется подписчикам."}</p>
+    <a class="cta" data-u="https://t.me/${CAT.channel}">Подписаться на канал</a>
+    ${inTg ? `<a class="cta ghost" data-act="recheck">Я подписался, проверить</a>` : ""}</div>`;
+}
+async function check(force){
+  if (!(tg && tg.initData) || !CHECK_URL) { member = false; render(); return; }
+  try { if (!force && sessionStorage.getItem("bc_member") === "1") { member = true; render(); return; } } catch(e){}
+  member = null; render();
+  try {
+    const r = await fetch(CHECK_URL + "?initData=" + encodeURIComponent(tg.initData) + (force ? "&fresh=1" : ""));
+    const j = await r.json();
+    member = j.member === true;
+    if (member) try { sessionStorage.setItem("bc_member", "1"); } catch(e){}
+  } catch(e) { member = false; }
+  render();
+}
+main.onclick = e => {
+  if (e.target.closest("[data-act=recheck]")) { e.preventDefault(); check(true); return; }
+  const el = e.target.closest("[data-u]"); if (el) { e.preventDefault(); go(el.dataset.u); } };
+render();
+check(false);
+</script>
+</body>
+</html>
